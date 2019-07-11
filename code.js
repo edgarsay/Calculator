@@ -60,7 +60,7 @@ function cal( part1, op, part2 ){
 
 function eq(){
     let s = curr.innerHTML;
-    let r = "";
+    let r = "0";
     let part = [0, 0];
     let ops = ['+', '-', '*', '/'];
     let op = '';
