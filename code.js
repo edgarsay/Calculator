@@ -5,6 +5,7 @@ window.onload= function(){
 
 
 }
+dot = 1;
 
 function clr(){
     curr.innerHTML = 0;
@@ -12,16 +13,32 @@ function clr(){
 
 function numbers( n ){
     let s = curr.innerHTML;
+
+    if(n == '.'){
+       if(dot == 0)
+            return;
+        else
+            dot = 0
+    }
+    
     if(curr.innerText.length > 10){
         return;
     } 
-    if(curr.innerText == "0" || curr.innerText == "00"){
+    if(curr.innerText == "0"){
+        if(n == '.'){
+            curr.innerHTML += n;
+            return;
+        }
         if(n == 00)
             return;
         curr.innerHTML = n;
         return;
     }
     if(s.endsWith("+0") || s.endsWith("-0") || s.endsWith("*0") || s.endsWith("/0")){
+        if(n == '.'){
+            curr.innerHTML += n;
+            return;
+        }
         if(n == "00")
             return;
         curr.innerHTML = curr.innerHTML.slice(0,curr.innerHTML.length-1);
@@ -30,6 +47,9 @@ function numbers( n ){
 }
 
 function operators( o ){
+    if(o == "+" ||o == "*" ||o == "/" ||o == "-")
+        dot = 1;
+
     let r = "";
     let part = [0, 0];
     let ops = ['+', '-', '*', '/'];
